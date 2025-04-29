@@ -1,483 +1,832 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UBC Transport - Din Pålidelige Partner i Hele Danmark</title>
+    <title>UBC Transport - Premium Transportløsninger i Hele Danmark</title>
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* --- CSS Styling (Opdateret: Hero baggrund, Fjernet .van-image) --- */
-        :root {
-            --primary-color: #0056b3;
-            --secondary-color: #f8f9fa;
-            --dark-color: #212529;
-            --light-color: #ffffff;
-            --text-color: #495057;
-            --accent-color: #ff6b6b;
-            --heading-font: 'Poppins', sans-serif;
-            --body-font: 'Roboto', sans-serif;
-            --base-font-size: 16px;
-            --line-height: 1.7;
-            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
-            --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
-            --transition-speed: 0.3s;
-            --transition-speed-fast: 0.2s;
-            --smooth-transition: 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Refined Color Palette
+            'primary': {
+              DEFAULT: '#004a99', // Slightly deeper blue
+              'light': '#e6f0ff',
+              'dark': '#003366',
+            },
+            'secondary': '#f0f4f8', // Softer off-white/light gray
+            'accent': {
+              DEFAULT: '#f97316', // Professional Orange
+              'light': '#ffedd5',
+              'dark': '#c2410c',
+            },
+            'neutral': {
+              '50': '#f8fafc',
+              '100': '#f1f5f9',
+              '200': '#e2e8f0',
+              '300': '#cbd5e1',
+              '400': '#94a3b8',
+              '500': '#64748b',
+              '600': '#475569', // Main text color
+              '700': '#334155',
+              '800': '#1e293b', // Darker text / elements
+              '900': '#0f172a', // Very dark / footer bg
+            },
+          },
+          fontFamily: {
+            // Assigning Google Fonts
+            'sans': ['Roboto', 'sans-serif'],
+            'heading': ['Poppins', 'sans-serif'],
+          },
+          boxShadow: {
+            // Subtle shadows
+            'soft': '0 4px 15px rgba(0, 0, 0, 0.05)',
+            'lifted': '0 10px 30px rgba(0, 0, 0, 0.07)',
+          },
+          transitionTimingFunction: {
+            // Custom easing
+            'elastic': 'cubic-bezier(0.68, -0.55, 0.27, 1.55)',
+          },
+          keyframes: {
+             // Subtle pulse for hero button
+             pulse: {
+               '0%, 100%': { transform: 'scale(1)', boxShadow: '0 6px 12px rgba(249, 115, 22, 0.2)' }, // Accent color shadow
+               '50%': { transform: 'scale(1.03)', boxShadow: '0 10px 20px rgba(249, 115, 22, 0.3)' },
+             },
+             // Entrance animations
+             fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+             },
+             fadeIn: {
+                 '0%': { opacity: '0' },
+                 '100%': { opacity: '1' },
+             },
+             slideInLeft: {
+                 '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                 '100%': { opacity: '1', transform: 'translateX(0)' },
+             },
+             slideInRight: {
+                 '0%': { opacity: '0', transform: 'translateX(50px)' },
+                 '100%': { opacity: '1', transform: 'translateX(0)' },
+             }
+          },
+          animation: {
+            pulse: 'pulse 2.5s ease-in-out infinite',
+            fadeInUp: 'fadeInUp 0.8s ease-out forwards',
+            fadeIn: 'fadeIn 1s ease-out forwards',
+            slideInLeft: 'slideInLeft 0.8s ease-out forwards',
+            slideInRight: 'slideInRight 0.8s ease-out forwards',
+          }
         }
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; font-size: var(--base-font-size); }
-        body { font-family: var(--body-font); line-height: var(--line-height); background-color: var(--light-color); color: var(--text-color); overflow-x: hidden; padding-top: 45px; }
-        .container { width: 90%; max-width: 1140px; margin: auto; padding: 0 15px; }
+      }
+    }
+    </script>
 
-        /* --- Brugerdefineret Scrollbar --- */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--secondary-color); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #004494; }
+    <style>
+        /* Base font size and line height */
+        body {
+            font-family: theme('fontFamily.sans');
+            color: theme('colors.neutral.600');
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding-top: 48px; /* Height of top bar */
+        }
 
-        /* --- Sticky Top Bar --- */
-        #top-contact-bar { background-color: var(--dark-color); color: var(--light-color); padding: 0.5rem 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 1010; font-size: 0.9rem; text-align: center; }
-        #top-contact-bar .container { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; }
-        #top-contact-bar a { color: var(--light-color); text-decoration: none; font-weight: 500; transition: color var(--transition-speed) ease; }
-        #top-contact-bar a:hover { color: var(--accent-color); }
-        #top-contact-bar .btn-cta-top { background-color: var(--accent-color); color: var(--light-color); padding: 4px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: 600; margin-left: 10px; text-decoration: none; display: inline-block; transition: background-color var(--transition-speed) ease, transform var(--transition-speed-fast) ease; }
-        #top-contact-bar .btn-cta-top:hover { background-color: #e05a5a; }
-        #top-contact-bar .btn-cta-top:active { transform: scale(0.95); }
+        /* Headings font */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: theme('fontFamily.heading');
+            color: theme('colors.neutral.800');
+            font-weight: 600; /* Default heading weight */
+        }
 
-        /* --- Header & Navigation --- */
-        .main-header { background: var(--light-color); color: var(--dark-color); padding: 0.8rem 0; position: sticky; top: 45px; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
-        .main-header .logo svg { height: 40px; width: auto; vertical-align: middle; }
-        .main-header .logo { line-height: 0; display: inline-block; }
-        .main-nav { display: block; }
-        .main-nav ul { list-style: none; margin: 0; padding: 0; }
-        .main-nav ul li { display: inline-block; margin-left: 25px; }
-        .main-nav ul li a { color: var(--dark-color); text-decoration: none; font-weight: 600; font-family: var(--heading-font); transition: color var(--transition-speed) ease; position: relative; padding-bottom: 8px; font-size: 1rem; }
-        .main-nav ul li a::after { content: ''; position: absolute; width: 100%; height: 2px; bottom: 0; left: 0; background-color: var(--primary-color); transform: scaleX(0); transform-origin: center; transition: transform var(--transition-speed) ease-in-out; }
-        .main-nav ul li a:hover, .main-nav ul li a.active { color: var(--primary-color); }
-        .main-nav ul li a:hover::after, .main-nav ul li a.active::after { transform: scaleX(1); }
-        .mobile-nav-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--dark-color); cursor: pointer; padding: 5px; line-height: 1; }
-
-        /* --- Hero Section --- */
+        /* Hero Background - Keep your image */
         #hero {
-            /* OPDATERET: Bruger dit billede som baggrund */
-            background: linear-gradient(rgba(0, 86, 179, 0.75), rgba(0, 68, 140, 0.8)), url('Ubc .webp') no-repeat center center/cover;
-            color: var(--light-color);
-            padding: 120px 0;
-            text-align: center;
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-attachment: fixed; /* Holder baggrunden fast ved scroll */
-         }
-        #hero h1 {
-             font-family: var(--heading-font); font-size: clamp(2.8rem, 7vw, 4.5rem);
-             font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* Lidt tydeligere skygge */
-             color: var(--light-color);
-         }
-        #hero p { font-size: clamp(1.1rem, 2.5vw, 1.4rem); margin-bottom: 2.5rem; max-width: 750px; margin-left: auto; margin-right: auto; font-weight: 400; text-shadow: 1px 1px 4px rgba(0,0,0,0.6); }
-        #hero .btn-primary { animation: pulse 2s ease-in-out 1s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); box-shadow: 0 6px 12px rgba(255, 107, 107, 0.3); } 50% { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4); } }
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 33, 66, 0.9)), url('Ubc .webp') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        @media (max-width: 1024px) {
+             #hero { background-attachment: scroll; } /* Disable fixed on tablets/mobile for performance */
+        }
 
-        /* --- Knapper --- */
-        .btn { display: inline-block; padding: 12px 30px; font-family: var(--heading-font); font-weight: 600; font-size: 1rem; border-radius: var(--border-radius); text-decoration: none; cursor: pointer; transition: all var(--transition-speed-fast) ease; border: none; margin: 5px; box-shadow: var(--box-shadow); }
-        .btn:hover { transform: translateY(-3px); box-shadow: var(--box-shadow-hover); }
-        .btn:active { transform: translateY(0px) scale(0.98); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .btn-primary { background-color: var(--accent-color); color: var(--light-color); }
-        .btn-primary:hover { background-color: #e05a5a; }
-        .btn-secondary { background-color: transparent; color: var(--light-color); border: 2px solid var(--light-color); }
-        .btn-secondary:hover { background-color: var(--light-color); color: var(--primary-color); }
-        .btn-dark { background-color: var(--primary-color); color: var(--light-color); }
-        .btn-dark:hover { background-color: #004494; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: theme('colors.neutral.200'); }
+        ::-webkit-scrollbar-thumb { background: theme('colors.primary.DEFAULT'); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: theme('colors.primary.dark'); }
 
-        /* --- Sektioner Generelt --- */
-        section { padding: 80px 0; overflow: hidden; }
-        .section-bg { background: linear-gradient(180deg, var(--secondary-color) 0%, #e9ecef 100%); }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-family: var(--heading-font); font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; color: var(--dark-color); margin-bottom: 0.5rem; position: relative; display: inline-block; }
-        .section-title h2::after { content: ''; position: absolute; width: 70px; height: 4px; background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%); bottom: -15px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
-        .section-title p { max-width: 600px; margin: 1.5rem auto 0 auto; color: var(--text-color); font-size: 1.05rem; }
+        /* Section Title Underline */
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, theme('colors.primary.DEFAULT') 0%, theme('colors.accent.DEFAULT') 100%);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
 
-        /* --- Hvorfor Vælge Os --- */
-        /* FJERNET: .van-image CSS, da billedet nu er i hero */
-        #why-us .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; margin-top: 40px; /* Tilføjet lidt top margin da billede er væk */ }
-        .feature-item { padding: 35px 30px; background: var(--light-color); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease; border: 1px solid transparent; }
-        .feature-item:hover { transform: translateY(-8px); box-shadow: var(--box-shadow-hover); border-color: var(--primary-color); }
-        .feature-item .icon { font-size: 2.8rem; color: var(--primary-color); margin-bottom: 1.5rem; line-height: 1; transition: transform var(--transition-speed) ease; }
-        .feature-item:hover .icon { transform: scale(1.1) rotate(5deg); }
-        .feature-item h3 { font-family: var(--heading-font); font-size: 1.3rem; color: var(--dark-color); margin-bottom: 0.5rem; }
+        /* Mobile Nav Transition */
+        #main-nav {
+            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        #main-nav.mobile-open {
+            transform: translateX(0);
+        }
 
-        /* --- Vores Proces Sektion --- */
-        #process .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 25px; text-align: center; position: relative; }
-        .step { padding: 25px; transition: transform var(--transition-speed) ease;}
-        .step:hover { transform: translateY(-5px); }
-        .step .step-number { width: 55px; height: 55px; line-height: 55px; border-radius: 50%; background: linear-gradient(45deg, var(--primary-color), #007bff); color: var(--light-color); font-weight: 700; font-size: 1.3rem; display: inline-block; margin-bottom: 1rem; box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3); transition: transform var(--transition-speed) ease; }
-        .step:hover .step-number { transform: scale(1.1); }
-        .step h3 { font-family: var(--heading-font); font-size: 1.15rem; color: var(--dark-color); margin-bottom: 0.5rem; }
-
-        /* --- Services Sektion --- */
-        #services .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .service-item { background: var(--light-color); padding: 40px 30px; border-radius: var(--border-radius); box-shadow: var(--box-shadow); display: flex; align-items: center; transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease; border-left: 5px solid #eee; }
-        .service-item:hover { transform: translateY(-8px); box-shadow: var(--box-shadow-hover); border-left-color: var(--accent-color); }
-        .service-item .icon { font-size: 2rem; color: var(--primary-color); margin-right: 25px; min-width: 40px; text-align: center; line-height: 1; transition: transform var(--transition-speed) ease; }
-        .service-item:hover .icon { transform: scale(1.15) rotate(-5deg); }
-        .service-item-content h3 { font-family: var(--heading-font); font-size: 1.4rem; color: var(--primary-color); margin-bottom: 0.75rem; }
-        .service-item-content p { font-size: 0.95rem; }
-
-        /* --- Pris Estimator Sektion --- */
-        #quote-estimator { text-align: center; }
-        .estimator-form { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 2rem; }
-        .estimator-form label { font-weight: 600; margin-right: 5px; }
-        .estimator-form select, .estimator-form button { padding: 10px 15px; border: 1px solid #ccc; border-radius: var(--border-radius); font-family: var(--body-font); font-size: 1rem; }
-        .estimator-form select:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.15); }
-        .estimator-form button { background-color: var(--primary-color); color: var(--light-color); cursor: pointer; transition: all var(--transition-speed-fast) ease; box-shadow: var(--box-shadow); }
-        .estimator-form button:hover { background-color: #004494; transform: translateY(-2px); box-shadow: var(--box-shadow-hover); }
-        .estimator-form button:active { transform: translateY(0px) scale(0.98); box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-        #estimate-result { font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; min-height: 2em; transition: opacity var(--transition-speed) ease;}
-        #estimate-result span { color: var(--primary-color); font-size: 1.6rem;}
-        .estimator-disclaimer { font-size: 0.85rem; color: #888; margin-top: 1.5rem; font-style: italic; }
-
-        /* --- Mid-Page CTA Sektion --- */
-        #cta-section { background: linear-gradient(135deg, var(--primary-color) 0%, #007bff 100%); color: var(--light-color); padding: 60px 0; text-align: center; }
-        #cta-section h2 { font-family: var(--heading-font); font-size: 2.2rem; margin-bottom: 1rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
-        #cta-section p { margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-        /* --- Testimonials Sektion --- */
-        #testimonials { background: linear-gradient(0deg, var(--secondary-color) 0%, #e9ecef 100%); }
-        .testimonial-slider { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .testimonial-item { background: var(--light-color); padding: 35px; border-radius: var(--border-radius); box-shadow: var(--box-shadow); position: relative; border-top: 5px solid var(--primary-color); transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease; }
-        .testimonial-item:hover { transform: scale(1.03); box-shadow: var(--box-shadow-hover); }
-        .testimonial-item::before { content: '“'; font-size: 5rem; color: var(--primary-color); opacity: 0.08; position: absolute; top: 15px; left: 20px; line-height: 1; }
-        .testimonial-item blockquote { margin-bottom: 1.5rem; font-style: italic; color: var(--text-color); font-size: 1.05rem; }
-        .testimonial-author { font-weight: 700; color: var(--dark-color); }
-        .testimonial-author span { display: block; font-size: 0.9rem; font-weight: 400; color: var(--text-color); margin-top: 3px; }
-
-        /* --- Kontakt Sektion --- */
-        #contact .contact-container { max-width: 700px; margin: 0 auto; text-align: center; }
-        .contact-info { width: 100%; }
-        .contact-info h3 { font-family: var(--heading-font); font-size: 1.8rem; color: var(--dark-color); margin-bottom: 1.5rem; }
-        .contact-info p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.05rem; }
-        .contact-details { list-style: none; padding: 0; margin-top: 1rem; }
-        .contact-details li { margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; }
-        .contact-details .icon { color: var(--primary-color); margin-right: 15px; width: 25px; text-align: center; font-size: 1.3rem; transition: color var(--transition-speed) ease; }
-        .contact-details a { color: var(--primary-color); text-decoration: none; transition: color var(--transition-speed) ease; font-weight: 500; }
-        .contact-details a:hover { color: var(--accent-color); }
-        .contact-details li:hover .icon { color: var(--accent-color); }
-
-        /* --- Footer --- */
-        .main-footer { background: var(--dark-color); color: var(--light-color); padding: 50px 0 25px 0; margin-top: 70px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 35px; margin-bottom: 35px; }
-        .footer-widget h4 { font-family: var(--heading-font); font-size: 1.3rem; margin-bottom: 1.2rem; color: var(--light-color); }
-        .footer-widget p, .footer-widget ul li { color: rgba(255, 255, 255, 0.75); font-size: 0.9rem; margin-bottom: 0.6rem; }
-        .footer-widget ul { list-style: none; padding-left: 0;}
-        .footer-widget ul li a { color: rgba(255, 255, 255, 0.75); text-decoration: none; transition: color var(--transition-speed) ease, padding-left var(--transition-speed) ease; display: inline-block; }
-        .footer-widget ul li a:hover { color: var(--light-color); padding-left: 5px; }
-        .footer-widget .contact-details li { margin-bottom: 0.8rem; justify-content: flex-start; }
-        .footer-widget .contact-details .icon { font-size: 1rem; margin-right: 10px; width: 20px; color: rgba(255, 255, 255, 0.75); transition: color var(--transition-speed) ease;}
-        .footer-widget .contact-details li:hover .icon { color: var(--light-color); }
-        .footer-bottom { text-align: center; padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); }
-
-        /* --- Scroll-to-Top Knap --- */
-        #scrollTopBtn { display: none; position: fixed; bottom: 25px; right: 35px; z-index: 999; border: none; outline: none; background-color: var(--primary-color); color: white; cursor: pointer; padding: 12px 17px; border-radius: 50%; font-size: 1.3rem; transition: all var(--transition-speed) ease; opacity: 0.7; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        #scrollTopBtn:hover { background-color: #004494; opacity: 1; transform: scale(1.1); }
-
-        /* --- Scroll Animation Styling --- */
+        /* Scroll Animation Base */
         .animate-on-scroll {
             opacity: 0;
-            transition: opacity var(--smooth-transition), transform var(--smooth-transition);
+            will-change: opacity, transform; /* Optimize for animation */
         }
-        .fade-in-up { transform: translateY(60px); }
-        .slide-in-left { transform: translateX(-70px) rotate(-4deg); }
-        .slide-in-right { transform: translateX(70px) rotate(4deg); }
         .animated {
             opacity: 1;
-            transform: none;
+            transform: none; /* Reset transform when animated */
         }
 
-        /* --- Responsivitet & Mobil Menu Styling --- */
-        @media (max-width: 992px) {
-            .main-nav { display: none; position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background-color: var(--dark-color); padding-top: 80px; box-shadow: -5px 0 15px rgba(0,0,0,0.2); transition: right 0.4s ease-in-out; z-index: 1005; overflow-y: auto; }
-            .main-nav.mobile-open { display: block; right: 0; }
-            .main-nav ul li { display: block; margin: 0; text-align: center; }
-            .main-nav ul li a { display: block; padding: 15px 20px; color: var(--light-color); font-size: 1.1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-            .main-nav ul li a:hover { color: var(--accent-color); }
-            .main-nav ul li a::after { display: none; }
-            .mobile-nav-toggle { display: block; z-index: 1006; }
-            #contact .contact-container { max-width: 90%; }
-            body { padding-top: 45px; }
-            #top-contact-bar { font-size: 0.8rem; padding: 0.4rem 0; }
-            #top-contact-bar .container { gap: 10px; justify-content: center; }
-            .main-header { top: 45px; }
-            #hero { background-attachment: scroll; } /* Fjerner fixed på mindre skærme for performance */
+        /* Price Estimator Result Animation */
+        #estimate-result span {
+            display: inline-block; /* Needed for transform */
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+            transform: translateY(10px);
         }
-        @media (max-width: 768px) {
-            html { font-size: 15px; }
-            #hero { padding: 80px 0; min-height: 60vh; }
-            section { padding: 60px 0; }
-            .footer-content { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        #estimate-result.visible span {
+            opacity: 1;
+            transform: translateY(0);
         }
-        @media (max-width: 576px) {
-            html { font-size: 14px; }
-            .btn { padding: 10px 20px; font-size: 0.9rem; }
-            #hero p { font-size: 1rem;}
-            .section-title h2 { font-size: 1.8rem; }
-            .estimator-form { flex-direction: column; gap: 15px; align-items: stretch;}
-            .main-nav { width: 100%; right: -100%;}
-            .main-nav.mobile-open { right: 0;}
+
+         /* Testimonial Quote Style */
+        .testimonial-item::before {
+            content: '“';
+            font-size: 6rem; /* Larger quote */
+            color: theme('colors.primary.DEFAULT');
+            opacity: 0.06; /* More subtle */
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            line-height: 1;
+            z-index: 0; /* Behind content */
         }
+        .testimonial-item blockquote {
+            position: relative; /* Ensure text is above pseudo-element */
+            z-index: 1;
+        }
+
+        /* Process Steps Connection (Optional visual enhancement) */
+        @media (min-width: 768px) { /* Only on larger screens */
+            .process-steps { position: relative; }
+            .process-steps::before {
+                content: '';
+                position: absolute;
+                top: 27.5px; /* Align with center of number circle */
+                left: 5%;
+                right: 5%;
+                height: 2px;
+                background: linear-gradient(to right, theme('colors.primary.light'), theme('colors.accent.light'));
+                z-index: 0;
+            }
+            .step { position: relative; z-index: 1; } /* Ensure steps are above the line */
+        }
+
 
     </style>
 </head>
-<body>
+<body class="bg-white overflow-x-hidden">
 
-    <div id="top-contact-bar">
-        <div class="container">
-            <span>Hurtig Kontakt:</span>
-            <a href="tel:00000000"><i class="fas fa-phone fa-fw"></i> 0000 0000</a>
-            <span>|</span>
-            <a href="mailto:Ubctransportlevering@gmail.com"><i class="fas fa-envelope fa-fw"></i> Ubctransportlevering@gmail.com</a>
-            <a href="#contact" class="btn-cta-top">Få Tilbud</a>
+    <div id="top-contact-bar" class="bg-neutral-900 text-neutral-200 py-2 fixed top-0 left-0 w-full z-50 text-sm">
+        <div class="container mx-auto px-4 flex flex-wrap justify-center items-center gap-x-4 gap-y-1">
+            <span class="hidden md:inline">Hurtig Kontakt:</span>
+            <a href="tel:00000000" class="hover:text-accent transition-colors duration-200"><i class="fas fa-phone fa-fw mr-1"></i> 0000 0000</a>
+            <span class="hidden md:inline text-neutral-500">|</span>
+            <a href="mailto:Ubctransportlevering@gmail.com" class="hover:text-accent transition-colors duration-200"><i class="fas fa-envelope fa-fw mr-1"></i> Ubctransportlevering@gmail.com</a>
+            <a href="#contact" class="ml-2 md:ml-4 bg-accent hover:bg-accent-dark text-white text-xs font-semibold px-3 py-1 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105">
+                Få Tilbud
+            </a>
         </div>
     </div>
 
-    <button id="scrollTopBtn" title="Tilbage til toppen"><i class="fas fa-arrow-up"></i></button>
+    <button id="scrollTopBtn" title="Tilbage til toppen" class="fixed bottom-6 right-6 z-40 bg-primary hover:bg-primary-dark text-white rounded-full p-3 shadow-lg transition-all duration-300 ease-in-out opacity-0 scale-90 hover:scale-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
 
-    <header class="main-header">
-        <div class="container">
-            <a href="#" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 40" width="180" height="40">
-                    <line x1="5" y1="35" x2="215" y2="35" stroke="var(--primary-color)" stroke-width="2"/>
-                    <text x="10" y="28" font-family="Poppins, sans-serif" font-size="28" font-weight="700" fill="var(--primary-color)">UBC</text>
-                    <text x="85" y="28" font-family="Poppins, sans-serif" font-size="28" font-weight="400" fill="var(--dark-color)">Transport</text>
-                </svg>
+    <header class="bg-white shadow-soft sticky top-[48px] z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="logo flex-shrink-0">
+                <span class="text-3xl font-heading font-bold text-primary">UBC</span>
+                <span class="text-3xl font-heading font-normal text-neutral-800 ml-1">Transport</span>
             </a>
-            <nav class="main-nav" id="main-nav">
-                <ul>
-                    <li><a href="#hero" class="active">Hjem</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#process">Proces</a></li>
-                    <li><a href="#quote-estimator">Pris Estimat</a></li>
-                    <li><a href="#contact">Kontakt</a></li>
+
+            <nav class="hidden lg:flex items-center space-x-6">
+                <ul class="flex space-x-6">
+                    <li><a href="#hero" class="nav-link active">Hjem</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#process" class="nav-link">Proces</a></li>
+                    <li><a href="#quote-estimator" class="nav-link">Pris Estimat</a></li>
+                    <li><a href="#contact" class="nav-link">Kontakt</a></li>
                 </ul>
+                <a href="#contact" class="btn btn-primary-outline text-sm">Få et Tilbud</a>
             </nav>
-            <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">
+
+            <button class="lg:hidden text-neutral-800 text-2xl p-2 focus:outline-none" id="mobile-nav-toggle" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">
                 <i class="fas fa-bars" id="menu-icon-open"></i>
                 <i class="fas fa-times" id="menu-icon-close" style="display: none;"></i>
             </button>
         </div>
     </header>
 
+    <nav class="lg:hidden fixed top-0 right-0 h-full w-72 bg-neutral-900 shadow-lg p-6 z-50 transform translate-x-full" id="main-nav">
+        <div class="flex justify-between items-center mb-8">
+             <span class="text-2xl font-heading font-bold text-primary-light">UBC</span>
+             <button class="text-neutral-300 hover:text-white text-2xl p-1" id="mobile-nav-close" aria-label="Luk menu">
+                 <i class="fas fa-times"></i>
+             </button>
+        </div>
+        <ul class="space-y-4">
+            <li><a href="#hero" class="mobile-nav-link active">Hjem</a></li>
+            <li><a href="#services" class="mobile-nav-link">Services</a></li>
+            <li><a href="#process" class="mobile-nav-link">Proces</a></li>
+            <li><a href="#quote-estimator" class="mobile-nav-link">Pris Estimat</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Kontakt</a></li>
+        </ul>
+         <a href="#contact" class="mt-8 w-full btn btn-accent text-center">Få et Tilbud</a>
+    </nav>
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden" aria-hidden="true"></div>
+
+
     <main>
-        <section id="hero">
-             <div class="container">
-                 <h1 class="animate-on-scroll fade-in-up">Effektiv & Pålidelig Transport - Leveret af UBC</h1>
-                <p class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Hurtig, sikker og professionel levering af dine varer i hele Danmark. Din forsendelse er i trygge hænder hos UBC Transport.</p>
-                <div class="animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">
-                    <a href="#contact" class="btn btn-primary">Få et Tilbud Nu</a>
+        <section id="hero" class="relative text-white pt-32 pb-24 md:pt-48 md:pb-40 min-h-[75vh] flex items-center justify-center text-center overflow-hidden">
+            <div class="container mx-auto px-4 z-10 relative">
+                <h1 class="animate-on-scroll font-heading text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight" style="animation-name: fadeInUp;">
+                    Effektiv & Pålidelig Transport <br class="hidden md:block"> Leveret af UBC
+                </h1>
+                <p class="animate-on-scroll text-lg md:text-xl lg:text-2xl text-neutral-200 mb-10 max-w-3xl mx-auto" style="animation-name: fadeInUp; animation-delay: 0.2s;">
+                    Hurtig, sikker og professionel levering af dine varer i hele Danmark. Din forsendelse er i trygge hænder hos UBC Transport.
+                </p>
+                <div class="animate-on-scroll space-x-4" style="animation-name: fadeInUp; animation-delay: 0.4s;">
+                    <a href="#contact" class="btn btn-accent animate-pulse">Få et Tilbud Nu</a>
                     <a href="#services" class="btn btn-secondary">Se Vores Services</a>
                 </div>
             </div>
-        </section>
+            </section>
 
-         <section id="why-us" class="section-bg">
-             <div class="container">
-                <div class="section-title animate-on-scroll fade-in-up">
-                    <h2>Hvorfor Vælge UBC Transport?</h2>
-                    <p>Vi leverer mere end bare pakker - vi leverer tryghed og effektivitet.</p>
+        <section id="why-us" class="py-16 md:py-24 bg-secondary">
+            <div class="container mx-auto px-4">
+                <div class="section-title text-center mb-12 md:mb-16 animate-on-scroll" style="animation-name: fadeInUp;">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Hvorfor Vælge UBC Transport?</h2>
+                    <p class="text-lg text-neutral-500 max-w-2xl mx-auto">Vi leverer mere end bare pakker - vi leverer tryghed, effektivitet og skræddersyede løsninger.</p>
                 </div>
-                 <div class="features-grid">
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.2s;"><div class="icon"><i class="fas fa-map-marked-alt"></i></div><h3>Hele Danmark Dækning</h3><p>Vi opererer landsdækkende...</p></div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.35s;"><div class="icon"><i class="fas fa-shield-alt"></i></div><h3>Sikker Håndtering</h3><p>Dine varer... behandles med største omhu...</p></div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.5s;"><div class="icon"><i class="fas fa-route"></i></div><h3>Real-tids Sporing</h3><p>Følg din forsendelse live...</p></div>
-                    <div class="feature-item animate-on-scroll fade-in-up" style="transition-delay: 0.65s;"><div class="icon"><i class="fas fa-handshake"></i></div><h3>Fleksibilitet</h3><p>Vi tilpasser os dine behov...</p></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="feature-item animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.1s;">
+                        <div class="icon bg-primary-light text-primary"><i class="fas fa-map-marked-alt"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Hele Danmark Dækning</h3>
+                        <p>Vi opererer landsdækkende og sikrer levering til selv de fjerneste kroge.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.2s;">
+                        <div class="icon bg-green-100 text-green-600"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Sikker Håndtering</h3>
+                        <p>Dine varer behandles med største omhu og professionalisme under hele rejsen.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.3s;">
+                        <div class="icon bg-blue-100 text-blue-600"><i class="fas fa-route"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Real-tids Sporing</h3>
+                        <p>Følg din forsendelse live fra afhentning til levering med vores avancerede system.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.4s;">
+                        <div class="icon bg-purple-100 text-purple-600"><i class="fas fa-handshake"></i></div>
+                        <h3 class="text-xl font-semibold mb-2">Fleksibilitet & Tilpasning</h3>
+                        <p>Vi tilpasser os dine specifikke behov og tilbyder skræddersyede transportløsninger.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="process">
-            <div class="container">
-                <div class="section-title animate-on-scroll fade-in-up"><h2>Sådan Fungerer Det - Vores Proces</h2><p>Vi gør transport nemt og overskueligt for dig.</p></div>
-                <div class="process-steps">
-                    <div class="step animate-on-scroll fade-in-up"><div class="step-number">1</div><h3>Forespørgsel</h3><p>Kontakt os...</p></div>
-                    <div class="step animate-on-scroll fade-in-up" style="transition-delay: 0.1s;"><div class="step-number">2</div><h3>Tilbud</h3><p>Vi udarbejder...</p></div>
-                    <div class="step animate-on-scroll fade-in-up" style="transition-delay: 0.2s;"><div class="step-number">3</div><h3>Booking</h3><p>Når du accepterer...</p></div>
-                    <div class="step animate-on-scroll fade-in-up" style="transition-delay: 0.3s;"><div class="step-number">4</div><h3>Afhentning</h3><p>Vores chauffør...</p></div>
-                    <div class="step animate-on-scroll fade-in-up" style="transition-delay: 0.4s;"><div class="step-number">5</div><h3>Transport & Sporing</h3><p>Vi transporterer...</p></div>
-                    <div class="step animate-on-scroll fade-in-up" style="transition-delay: 0.5s;"><div class="step-number">6</div><h3>Levering</h3><p>Forsendelsen...</p></div>
+        <section id="process" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="section-title text-center mb-12 md:mb-16 animate-on-scroll" style="animation-name: fadeInUp;">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Sådan Fungerer Det - Vores Proces</h2>
+                    <p class="text-lg text-neutral-500 max-w-2xl mx-auto">Vi gør transport nemt og overskueligt for dig i 6 simple trin.</p>
+                </div>
+                <div class="process-steps grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+                    <div class="step animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.1s;">
+                        <div class="step-number bg-gradient-to-br from-primary to-blue-500">1</div>
+                        <h3 class="font-semibold text-lg mb-1">Forespørgsel</h3>
+                        <p class="text-sm text-neutral-500">Kontakt os med dine transportbehov.</p>
+                    </div>
+                    <div class="step animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.2s;">
+                        <div class="step-number bg-gradient-to-br from-primary to-blue-500">2</div>
+                        <h3 class="font-semibold text-lg mb-1">Tilbud</h3>
+                        <p class="text-sm text-neutral-500">Vi udarbejder et konkurrencedygtigt tilbud.</p>
+                    </div>
+                    <div class="step animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.3s;">
+                        <div class="step-number bg-gradient-to-br from-primary to-blue-500">3</div>
+                        <h3 class="font-semibold text-lg mb-1">Booking</h3>
+                        <p class="text-sm text-neutral-500">Du accepterer, og vi planlægger turen.</p>
+                    </div>
+                    <div class="step animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.4s;">
+                        <div class="step-number bg-gradient-to-br from-primary to-blue-500">4</div>
+                        <h3 class="font-semibold text-lg mb-1">Afhentning</h3>
+                        <p class="text-sm text-neutral-500">Vores chauffør ankommer til aftalt tid.</p>
+                    </div>
+                    <div class="step animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.5s;">
+                        <div class="step-number bg-gradient-to-br from-primary to-blue-500">5</div>
+                        <h3 class="font-semibold text-lg mb-1">Transport</h3>
+                        <p class="text-sm text-neutral-500">Sikker transport med live sporing.</p>
+                    </div>
+                    <div class="step animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.6s;">
+                        <div class="step-number bg-gradient-to-br from-primary to-blue-500">6</div>
+                        <h3 class="font-semibold text-lg mb-1">Levering</h3>
+                        <p class="text-sm text-neutral-500">Forsendelsen leveres sikkert til modtager.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="services" class="section-bg">
-             <div class="container">
-                 <div class="section-title animate-on-scroll fade-in-up"><h2>Vores Transportservices</h2><p>Vi tilbyder et bredt udvalg af transportløsninger...</p></div>
-                 <div class="services-grid">
-                    <div class="service-item animate-on-scroll slide-in-left"><div class="icon"><i class="fas fa-shipping-fast"></i></div><div class="service-item-content"><h3>Samme-dags Levering</h3><p>Når det haster mest...</p></div></div>
-                    <div class="service-item animate-on-scroll slide-in-right" style="transition-delay: 0.1s;"><div class="icon"><i class="fas fa-box-fragile"></i></div><div class="service-item-content"><h3>Skrøbelige Varer</h3><p>Specialiseret håndtering...</p></div></div>
-                    <div class="service-item animate-on-scroll slide-in-left" style="transition-delay: 0.2s;"><div class="icon"><i class="fas fa-boxes"></i></div><div class="service-item-content"><h3>Masseforsendelser</h3><p>Effektiv logistik...</p></div></div>
-                    <div class="service-item animate-on-scroll slide-in-right" style="transition-delay: 0.3s;"><div class="icon"><i class="fas fa-building"></i></div><div class="service-item-content"><h3>Privat & Erhverv</h3><p>Fleksible leveringsmuligheder...</p></div></div>
-                    <div class="service-item animate-on-scroll slide-in-left" style="transition-delay: 0.4s;"><div class="icon"><i class="fas fa-map-location-dot"></i></div><div class="service-item-content"><h3>Real-tids Sporing</h3><p>Hold dig opdateret...</p></div></div>
-                    <div class="service-item animate-on-scroll slide-in-right" style="transition-delay: 0.5s;"><div class="icon"><i class="fas fa-cogs"></i></div><div class="service-item-content"><h3>Skræddersyede Løsninger</h3><p>Har du specielle krav?...</p></div></div>
-                 </div>
-             </div>
-        </section>
-
-         <section id="quote-estimator">
-            <div class="container animate-on-scroll fade-in-up">
-                 <div class="section-title"><h2>Få et Prisestimat</h2><p>Vælg dine behov nedenfor for at få et hurtigt og uforpligtende prisestimat.</p></div>
-                 <div class="estimator-form">
-                     <div><label for="package-size">Pakkestørrelse:</label><select id="package-size" name="package-size"><option value="small">Lille (Op til 5 kg)</option><option value="medium">Mellem (5-25 kg)</option><option value="large">Stor (Over 25 kg / Palle)</option></select></div>
-                     <div><label for="distance">Distance:</label><select id="distance" name="distance"><option value="local">Lokal (Inden for samme by/postnr.)</option><option value="regional">Regional (Inden for regionen)</option><option value="national">National (Hele Danmark)</option></select></div>
-                     <button type="button" id="calculate-estimate-btn">Beregn Pris (Estimat)</button>
-                 </div>
-                 <div id="estimate-result"></div>
-                 <p class="estimator-disclaimer">**Vigtigt:** Dette er kun et estimat... Kontakt os for et præcist og bindende tilbud.</p>
+        <section id="services" class="py-16 md:py-24 bg-secondary">
+            <div class="container mx-auto px-4">
+                <div class="section-title text-center mb-12 md:mb-16 animate-on-scroll" style="animation-name: fadeInUp;">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Vores Transportservices</h2>
+                    <p class="text-lg text-neutral-500 max-w-2xl mx-auto">Vi tilbyder et bredt udvalg af transportløsninger tilpasset dine behov.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="service-item animate-on-scroll" style="animation-name: slideInLeft;">
+                        <div class="icon text-accent"><i class="fas fa-shipping-fast"></i></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary mb-1">Samme-dags Levering</h3>
+                            <p>Når det haster mest, leverer vi hurtigt og effektivt inden for samme dag.</p>
+                        </div>
+                    </div>
+                    <div class="service-item animate-on-scroll" style="animation-name: slideInRight; animation-delay: 0.1s;">
+                        <div class="icon text-red-500"><i class="fas fa-box-open"></i></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary mb-1">Skrøbelige Varer</h3>
+                            <p>Specialiseret håndtering og sikring af sarte og værdifulde forsendelser.</p>
+                        </div>
+                    </div>
+                    <div class="service-item animate-on-scroll" style="animation-name: slideInLeft; animation-delay: 0.2s;">
+                        <div class="icon text-blue-500"><i class="fas fa-boxes-stacked"></i></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary mb-1">Masseforsendelser</h3>
+                            <p>Effektiv logistik og distribution af større mængder gods og paller.</p>
+                        </div>
+                    </div>
+                    <div class="service-item animate-on-scroll" style="animation-name: slideInRight; animation-delay: 0.3s;">
+                        <div class="icon text-green-500"><i class="fas fa-building-user"></i></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary mb-1">Privat & Erhverv</h3>
+                            <p>Fleksible leveringsmuligheder for både private hjem og virksomhedsadresser.</p>
+                        </div>
+                    </div>
+                    <div class="service-item animate-on-scroll" style="animation-name: slideInLeft; animation-delay: 0.4s;">
+                         <div class="icon text-purple-500"><i class="fas fa-map-location-dot"></i></div>
+                         <div>
+                             <h3 class="text-xl font-semibold text-primary mb-1">Real-tids Sporing</h3>
+                             <p>Hold dig opdateret med præcis information om din forsendelses status.</p>
+                         </div>
+                    </div>
+                     <div class="service-item animate-on-scroll" style="animation-name: slideInRight; animation-delay: 0.5s;">
+                         <div class="icon text-yellow-500"><i class="fas fa-cogs"></i></div>
+                         <div>
+                             <h3 class="text-xl font-semibold text-primary mb-1">Skræddersyede Løsninger</h3>
+                             <p>Har du specielle krav? Vi finder en løsning, der passer perfekt til dig.</p>
+                         </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="cta-section">
-             <div class="container animate-on-scroll fade-in-up"> <h2>Klar til at sende med UBC Transport?</h2> <p>Få et uforpligtende tilbud i dag...</p> <a href="#contact" class="btn btn-primary">Anmod om Tilbud</a> </div>
+        <section id="quote-estimator" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 text-center animate-on-scroll" style="animation-name: fadeInUp;">
+                <div class="section-title mb-10 md:mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Få et Prisestimat</h2>
+                    <p class="text-lg text-neutral-500 max-w-2xl mx-auto">Vælg dine behov nedenfor for at få et hurtigt og uforpligtende prisestimat.</p>
+                </div>
+                <div class="estimator-form max-w-3xl mx-auto flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mb-6">
+                    <div class="w-full md:w-auto flex-1">
+                        <label for="package-size" class="block text-sm font-medium text-neutral-700 mb-1 text-left">Pakkestørrelse:</label>
+                        <select id="package-size" name="package-size" class="form-select">
+                            <option value="small">Lille (Op til 5 kg)</option>
+                            <option value="medium">Mellem (5-25 kg)</option>
+                            <option value="large">Stor (Over 25 kg / Palle)</option>
+                        </select>
+                    </div>
+                    <div class="w-full md:w-auto flex-1">
+                        <label for="distance" class="block text-sm font-medium text-neutral-700 mb-1 text-left">Distance:</label>
+                        <select id="distance" name="distance" class="form-select">
+                            <option value="local">Lokal (Inden for Aarhus)</option>
+                            <option value="regional">Regional (Midtjylland)</option>
+                            <option value="national">National (Hele Danmark)</option>
+                        </select>
+                    </div>
+                    <button type="button" id="calculate-estimate-btn" class="btn btn-primary mt-4 md:mt-7 w-full md:w-auto flex-shrink-0">
+                        Beregn Estimat
+                    </button>
+                </div>
+                <div id="estimate-result" class="text-xl font-semibold mt-6 min-h-[30px]">
+                    </div>
+                <p class="estimator-disclaimer text-sm text-neutral-400 mt-4 max-w-xl mx-auto">
+                    **Vigtigt:** Dette er kun et vejledende estimat baseret på standardparametre. Den endelige pris kan variere. Kontakt os venligst for et præcist og bindende tilbud tilpasset din specifikke opgave.
+                </p>
+            </div>
         </section>
 
-        <section id="testimonials" class="section-bg"> <div class="container">
-                  <div class="section-title animate-on-scroll fade-in-up"><h2>Hvad Vores Kunder Siger</h2><p>Vi er stolte af de relationer...</p></div>
-                  <div class="testimonial-slider">
-                      <div class="testimonial-item animate-on-scroll slide-in-left"><blockquote>Fantastisk service! Tak UBC!</blockquote><div class="testimonial-author">Mette Jensen <span>Virksomhed A/S</span></div></div>
-                      <div class="testimonial-item animate-on-scroll slide-in-right" style="transition-delay: 0.15s;"><blockquote>UBC Transport håndterede vores skrøbelige varer perfekt...</blockquote><div class="testimonial-author">Lars Petersen <span>Privatkunde</span></div></div>
-                      <div class="testimonial-item animate-on-scroll slide-in-left" style="transition-delay: 0.3s;"><blockquote>Effektiv løsning til vores masseforsendelser med UBC...</blockquote><div class="testimonial-author">Camilla Nielsen <span>Webshop XYZ</span></div></div>
-                  </div>
-             </div>
+        <section id="cta-section" class="py-16 md:py-20 bg-gradient-to-r from-primary to-blue-600 text-white">
+            <div class="container mx-auto px-4 text-center animate-on-scroll" style="animation-name: fadeInUp;">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Klar til at sende med UBC Transport?</h2>
+                <p class="text-lg text-neutral-200 mb-8 max-w-xl mx-auto">Lad os håndtere din næste forsendelse professionelt og effektivt. Få et uforpligtende tilbud i dag.</p>
+                <a href="#contact" class="btn btn-accent">Anmod om Tilbud Nu</a>
+            </div>
         </section>
 
-        <section id="contact"> <div class="container animate-on-scroll fade-in-up">
-                 <div class="section-title"><h2>Kontakt UBC Transport</h2><p>Vi er klar til at hjælpe dig med din næste forsendelse.</p></div>
-                 <div class="contact-container">
-                     <div class="contact-info">
-                         <h3>Kontakt Information</h3>
-                         <p>Vi holder til i <strong>Århus</strong> og dækker hele Danmark.</p>
-                         <p>Du kan altid fange os på nedenstående oplysninger i vores åbningstid.</p>
-                         <ul class="contact-details">
-                             <li><span class="icon"><i class="fas fa-map-marker-alt"></i></span> Århus, Danmark</li>
-                             <li><span class="icon"><i class="fas fa-phone"></i></span> Telefon: <a href="tel:00000000">0000 0000</a></li>
-                             <li><span class="icon"><i class="fas fa-envelope"></i></span> E-mail: <a href="mailto:Ubctransportlevering@gmail.com">Ubctransportlevering@gmail.com</a></li>
-                             <li><span class="icon"><i class="fas fa-clock"></i></span> Åbningstider: Man-Fre 08:00 - 17:00</li>
-                         </ul>
+        <section id="testimonials" class="py-16 md:py-24 bg-secondary">
+            <div class="container mx-auto px-4">
+                <div class="section-title text-center mb-12 md:mb-16 animate-on-scroll" style="animation-name: fadeInUp;">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Hvad Vores Kunder Siger</h2>
+                    <p class="text-lg text-neutral-500 max-w-2xl mx-auto">Vi er stolte af de relationer, vi bygger, og den service, vi leverer.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="testimonial-item animate-on-scroll" style="animation-name: slideInLeft;">
+                        <blockquote>"Fantastisk service fra start til slut! Hurtig respons, professionel chauffør og levering til tiden. Kan varmt anbefale UBC Transport!"</blockquote>
+                        <div class="testimonial-author">Mette Jensen<span>CEO, Virksomhed A/S</span></div>
+                    </div>
+                    <div class="testimonial-item animate-on-scroll" style="animation-name: fadeInUp; animation-delay: 0.15s;">
+                        <blockquote>"UBC Transport håndterede vores skrøbelige varer perfekt. Alt ankom i perfekt stand. Meget betryggende og pålidelig service."</blockquote>
+                        <div class="testimonial-author">Lars Petersen<span>Privatkunde, Silkeborg</span></div>
+                    </div>
+                    <div class="testimonial-item animate-on-scroll" style="animation-name: slideInRight; animation-delay: 0.3s;">
+                        <blockquote>"Effektiv og problemfri løsning til vores faste masseforsendelser. UBC har optimeret vores logistik og er altid fleksible."</blockquote>
+                        <div class="testimonial-author">Camilla Nielsen<span>Logistikchef, Webshop XYZ</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 animate-on-scroll" style="animation-name: fadeInUp;">
+                <div class="section-title text-center mb-10 md:mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Kontakt UBC Transport</h2>
+                    <p class="text-lg text-neutral-500 max-w-2xl mx-auto">Vi er klar til at hjælpe dig med din næste forsendelse. Udfyld formularen eller kontakt os direkte.</p>
+                </div>
+                <div class="max-w-3xl mx-auto text-center">
+                     <div class="bg-primary-light border border-primary/20 rounded-lg p-8 shadow-soft">
+                        <h3 class="text-2xl font-semibold text-primary mb-6">Kontakt Information</h3>
+                        <p class="text-neutral-600 mb-6">
+                            Vi holder til centralt i <strong class="font-medium">Aarhus</strong> og dækker effektivt hele Danmark. Kontakt os i vores åbningstider for personlig betjening.
+                        </p>
+                        <ul class="space-y-4 text-left inline-block">
+                            <li class="flex items-center">
+                                <span class="icon-contact text-primary"><i class="fas fa-map-marker-alt fa-fw"></i></span>
+                                <span>Aarhus, Danmark (Landsdækkende Service)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="icon-contact text-primary"><i class="fas fa-phone fa-fw"></i></span>
+                                <span>Telefon: <a href="tel:00000000" class="font-medium text-primary hover:text-accent transition-colors">0000 0000</a></span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="icon-contact text-primary"><i class="fas fa-envelope fa-fw"></i></span>
+                                <span>E-mail: <a href="mailto:Ubctransportlevering@gmail.com" class="font-medium text-primary hover:text-accent transition-colors break-all">Ubctransportlevering@gmail.com</a></span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="icon-contact text-primary"><i class="fas fa-clock fa-fw"></i></span>
+                                <span>Åbningstider: Man-Fre 08:00 - 17:00</span>
+                            </li>
+                        </ul>
+                         <p class="mt-6 text-neutral-500 text-sm">Vi ser frem til at høre fra dig!</p>
                      </div>
-                 </div>
-             </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-widget"><h4>UBC Transport</h4><p>Din pålidelige partner...</p></div>
-                <div class="footer-widget"><h4>Hurtige Links</h4><ul><li><a href="#hero">Hjem</a></li><li><a href="#services">Services</a></li><li><a href="#process">Proces</a></li><li><a href="#quote-estimator">Pris Estimat</a></li><li><a href="#contact">Kontakt</a></li><li><a href="#">Privatlivspolitik</a></li><li><a href="#">Betingelser</a></li></ul></div>
-                <div class="footer-widget"><h4>Vores Services</h4><ul><li><a href="#services">Samme-dags</a></li><li><a href="#services">Skrøbeligt Gods</a></li><li><a href="#services">Masseforsendelser</a></li><li><a href="#services">Privat & Erhverv</a></li><li><a href="#services">Sporing</a></li></ul></div>
-                <div class="footer-widget"><h4>Kontakt Info</h4>
-                    <ul class="contact-details">
-                         <li><span class="icon"><i class="fas fa-map-marker-alt"></i></span>Århus</li>
-                         <li><span class="icon"><i class="fas fa-phone"></i></span><a href="tel:00000000">0000 0000</a></li>
-                         <li><span class="icon"><i class="fas fa-envelope"></i></span><a href="mailto:Ubctransportlevering@gmail.com">Ubctransportlevering@gmail.com</a></li>
+    <footer class="bg-neutral-900 text-neutral-300 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+                <div class="footer-widget">
+                    <h4 class="text-xl font-semibold text-white mb-4">UBC Transport</h4>
+                    <p class="text-sm leading-relaxed">Din pålidelige partner for hurtig, sikker og professionel transport i hele Danmark. Vi leverer kvalitet og tryghed.</p>
+                </div>
+                <div class="footer-widget">
+                    <h4 class="text-xl font-semibold text-white mb-4">Hurtige Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="footer-link">Hjem</a></li>
+                        <li><a href="#services" class="footer-link">Services</a></li>
+                        <li><a href="#process" class="footer-link">Proces</a></li>
+                        <li><a href="#quote-estimator" class="footer-link">Pris Estimat</a></li>
+                        <li><a href="#contact" class="footer-link">Kontakt</a></li>
+                        <li><a href="#" class="footer-link">Privatlivspolitik</a></li>
+                        <li><a href="#" class="footer-link">Handelsbetingelser</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4 class="text-xl font-semibold text-white mb-4">Vores Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="footer-link">Samme-dags Levering</a></li>
+                        <li><a href="#services" class="footer-link">Skrøbeligt Gods</a></li>
+                        <li><a href="#services" class="footer-link">Masseforsendelser</a></li>
+                        <li><a href="#services" class="footer-link">Privat & Erhverv</a></li>
+                        <li><a href="#services" class="footer-link">Real-tids Sporing</a></li>
+                        <li><a href="#services" class="footer-link">Skræddersyede Løsninger</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4 class="text-xl font-semibold text-white mb-4">Kontakt Info</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt fa-fw text-primary mt-1 mr-3 flex-shrink-0"></i>
+                            <span>Aarhus, Danmark <br>(Landsdækkende)</span>
+                        </li>
+                        <li class="flex items-start">
+                             <i class="fas fa-phone fa-fw text-primary mt-1 mr-3 flex-shrink-0"></i>
+                             <a href="tel:00000000" class="footer-link">0000 0000</a>
+                         </li>
+                         <li class="flex items-start">
+                             <i class="fas fa-envelope fa-fw text-primary mt-1 mr-3 flex-shrink-0"></i>
+                             <a href="mailto:Ubctransportlevering@gmail.com" class="footer-link break-all">Ubctransportlevering@gmail.com</a>
+                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">© <script>document.write(new Date().getFullYear())</script> UBC Transport. Alle rettigheder forbeholdes.</div>
+            <div class="footer-bottom text-center border-t border-neutral-700 pt-6 mt-8">
+                <p class="text-sm text-neutral-400">&copy; <script>document.write(new Date().getFullYear())</script> UBC Transport. Alle rettigheder forbeholdes.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Scroll-to-Top Knap
-        let scrollTopButton = document.getElementById("scrollTopBtn");
-        window.addEventListener('scroll', scrollFunction);
-        function scrollFunction() { if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) { scrollTopButton.style.display = "block"; scrollTopButton.style.opacity = "0.8"; } else { scrollTopButton.style.opacity = "0"; setTimeout(() => { if (!(document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)) { scrollTopButton.style.display = "none"; } }, 300); } }
-        scrollTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        document.addEventListener('DOMContentLoaded', () => {
 
-        // Pris Estimator
-        const calculateBtn = document.getElementById('calculate-estimate-btn');
-        const resultDiv = document.getElementById('estimate-result');
-        const packageSizeSelect = document.getElementById('package-size');
-        const distanceSelect = document.getElementById('distance');
-        if (calculateBtn && resultDiv && packageSizeSelect && distanceSelect) {
-            calculateBtn.addEventListener('click', function() {
-                const size = packageSizeSelect.value; const distance = distanceSelect.value;
-                let basePrice = 50; let sizeMultiplier = 1; let distanceMultiplier = 1;
-                if (size === 'medium') { sizeMultiplier = 1.5; } else if (size === 'large') { sizeMultiplier = 3; }
-                if (distance === 'regional') { distanceMultiplier = 2; } else if (distance === 'national') { distanceMultiplier = 4; }
-                let estimatedPrice = basePrice * sizeMultiplier * distanceMultiplier;
-                resultDiv.style.opacity = 0;
-                setTimeout(() => { resultDiv.innerHTML = `Estimeret Pris: <span>${estimatedPrice.toFixed(0)} kr.</span>`; resultDiv.style.opacity = 1; }, 150);
-            });
-        }
+            // --- Helper Function for Tailwind Classes ---
+            // (Not strictly necessary with CDN but good practice for complex interactions)
+            const addClass = (el, className) => el.classList.add(...className.split(' '));
+            const removeClass = (el, className) => el.classList.remove(...className.split(' '));
+            const toggleClass = (el, className) => el.classList.toggle(className); // Simplified for single class toggle
 
-        // Mobil Menu Toggle
-        const nav = document.getElementById('main-nav');
-        const toggleBtn = document.getElementById('mobile-nav-toggle');
-        const menuIconOpen = document.getElementById('menu-icon-open');
-        const menuIconClose = document.getElementById('menu-icon-close');
-        if (nav && toggleBtn && menuIconOpen && menuIconClose) {
-            toggleBtn.addEventListener('click', () => {
-                const isOpen = nav.classList.contains('mobile-open');
-                nav.classList.toggle('mobile-open');
-                toggleBtn.setAttribute('aria-expanded', !isOpen);
-                if (!isOpen) { menuIconOpen.style.display = 'none'; menuIconClose.style.display = 'inline'; }
-                else { menuIconOpen.style.display = 'inline'; menuIconClose.style.display = 'none'; }
-            });
-            // Luk menuen når et link klikkes
-            nav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (nav.classList.contains('mobile-open')) {
-                        nav.classList.remove('mobile-open');
-                        toggleBtn.setAttribute('aria-expanded', 'false');
-                        menuIconOpen.style.display = 'inline';
-                        menuIconClose.style.display = 'none';
+            // --- Scroll-to-Top Button ---
+            const scrollTopButton = document.getElementById("scrollTopBtn");
+            if (scrollTopButton) {
+                const scrollFunction = () => {
+                    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                        addClass(scrollTopButton, 'opacity-100 scale-100');
+                        removeClass(scrollTopButton, 'opacity-0 scale-90');
+                    } else {
+                        addClass(scrollTopButton, 'opacity-0 scale-90');
+                        removeClass(scrollTopButton, 'opacity-100 scale-100');
+                    }
+                };
+                window.addEventListener('scroll', scrollFunction);
+                scrollTopButton.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // --- Price Estimator ---
+            const calculateBtn = document.getElementById('calculate-estimate-btn');
+            const resultDiv = document.getElementById('estimate-result');
+            const packageSizeSelect = document.getElementById('package-size');
+            const distanceSelect = document.getElementById('distance');
+
+            if (calculateBtn && resultDiv && packageSizeSelect && distanceSelect) {
+                calculateBtn.addEventListener('click', function() {
+                    const size = packageSizeSelect.value;
+                    const distance = distanceSelect.value;
+                    let basePrice = 75; // Adjusted base price
+                    let sizeMultiplier = 1;
+                    let distanceMultiplier = 1;
+
+                    // Size multipliers
+                    if (size === 'medium') { sizeMultiplier = 1.8; }
+                    else if (size === 'large') { sizeMultiplier = 3.5; }
+
+                    // Distance multipliers (Adjust based on actual pricing logic)
+                    if (distance === 'regional') { distanceMultiplier = 2.2; }
+                    else if (distance === 'national') { distanceMultiplier = 4.5; }
+
+                    let estimatedPrice = basePrice * sizeMultiplier * distanceMultiplier;
+
+                    // Display result with animation
+                    resultDiv.classList.remove('visible'); // Hide previous result first
+                    setTimeout(() => {
+                         resultDiv.innerHTML = `Estimeret Pris: <span class="text-primary font-bold text-2xl">${estimatedPrice.toFixed(0)} kr.</span>`;
+                         addClass(resultDiv, 'visible'); // Make visible with animation
+                    }, 150); // Short delay for effect
+                });
+            }
+
+            // --- Mobile Navigation ---
+            const nav = document.getElementById('main-nav');
+            const toggleBtn = document.getElementById('mobile-nav-toggle');
+            const closeBtn = document.getElementById('mobile-nav-close');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+            const menuIconClose = document.getElementById('menu-icon-close');
+            const overlay = document.getElementById('mobile-nav-overlay');
+            const navLinks = nav.querySelectorAll('a'); // Get all links inside mobile nav
+
+            const openMobileNav = () => {
+                addClass(nav, 'mobile-open'); // Uses transform in CSS
+                removeClass(nav, 'translate-x-full');
+                toggleBtn.setAttribute('aria-expanded', 'true');
+                menuIconOpen.style.display = 'none';
+                menuIconClose.style.display = 'inline';
+                removeClass(overlay, 'hidden');
+                addClass(overlay, 'opacity-100');
+                // Prevent body scroll when menu is open
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeMobileNav = () => {
+                removeClass(nav, 'mobile-open');
+                addClass(nav, 'translate-x-full');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                menuIconOpen.style.display = 'inline';
+                menuIconClose.style.display = 'none';
+                removeClass(overlay, 'opacity-100');
+                addClass(overlay, 'hidden');
+                 // Restore body scroll
+                document.body.style.overflow = '';
+            };
+
+            if (nav && toggleBtn && closeBtn && menuIconOpen && menuIconClose && overlay) {
+                toggleBtn.addEventListener('click', openMobileNav);
+                closeBtn.addEventListener('click', closeMobileNav);
+                overlay.addEventListener('click', closeMobileNav); // Close on overlay click
+
+                // Close menu when a link is clicked
+                navLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileNav);
+                });
+            }
+
+            // --- Active Navigation Link Highlighting ---
+            const sections = document.querySelectorAll('section[id]'); // Get all sections with an ID
+            const desktopNavLinks = document.querySelectorAll('.main-header nav a');
+            const mobileNavLinks = document.querySelectorAll('#main-nav a');
+
+            const updateActiveLink = () => {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Adjust offset based on header height + a little buffer
+                    const offset = 150;
+                    if (pageYOffset >= sectionTop - offset && pageYOffset < sectionTop + sectionHeight - offset) {
+                        currentSectionId = section.getAttribute('id');
                     }
                 });
-            });
-        }
 
-        // Scroll Animationer
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
-        if (animatedElements.length > 0 && 'IntersectionObserver' in window) { // Tjek for IntersectionObserver support
-            const observerCallback = (entries, observer) => {
-                entries.forEach((entry) => {
-                    // Check if element is intersecting
-                    if (entry.isIntersecting) {
-                        // Read delay from style attribute (e.g., "0.2s")
-                        let delay = 0;
-                        const delayString = entry.target.style.transitionDelay;
-                        if (delayString) {
-                             // Convert "0.2s" to 200 (milliseconds)
-                             delay = parseFloat(delayString) * 1000;
+                 // Update both desktop and mobile links
+                [...desktopNavLinks, ...mobileNavLinks].forEach(link => {
+                    link.classList.remove('active', 'text-primary', 'font-semibold', 'bg-primary-light'); // Remove active styles
+                     link.classList.add('text-neutral-700', 'hover:text-primary'); // Reset non-active styles for desktop
+                     if (link.closest('#main-nav')) { // Mobile specific reset
+                         link.classList.add('text-neutral-300', 'hover:text-white', 'hover:bg-neutral-700');
+                     }
+
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                        // Apply specific active styles
+                        if (link.closest('.main-header')) { // Desktop
+                             link.classList.add('text-primary', 'font-semibold');
+                             link.classList.remove('text-neutral-700');
+                        } else { // Mobile
+                             link.classList.add('text-white', 'bg-primary-dark');
+                             link.classList.remove('text-neutral-300', 'hover:text-white', 'hover:bg-neutral-700');
                         }
-
-                         // Add 'animated' class after the specified delay
-                         setTimeout(() => {
-                            entry.target.classList.add('animated');
-                         }, delay);
-
-                        observer.unobserve(entry.target); // Animer kun én gang
                     }
                 });
             };
 
-            const observerOptions = {
-                threshold: 0.1 // Trigger når 10% af elementet er synligt
-            };
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Initial check on load
 
-            const observer = new IntersectionObserver(observerCallback, observerOptions);
-            animatedElements.forEach((el) => observer.observe(el));
 
-        } else if (animatedElements.length > 0) {
-            // Fallback for ældre browsere uden IntersectionObserver: Vis elementerne med det samme
-            console.warn("IntersectionObserver not supported, showing all animated elements immediately.");
-            animatedElements.forEach((el) => el.classList.add('animated'));
-        }
+            // --- Scroll Animation Triggering ---
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
+                const observerCallback = (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            // Get animation name from style or default to fadeIn
+                            const animationName = entry.target.style.animationName || 'fadeIn';
+                            // Apply the animation class from Tailwind config
+                            addClass(entry.target, `animate-${animationName}`);
+                            // Add 'animated' class to ensure final state is visible
+                            addClass(entry.target, 'animated');
+                            observer.unobserve(entry.target); // Animate only once
+                        }
+                    });
+                };
+
+                const observerOptions = {
+                    threshold: 0.15, // Trigger when 15% of the element is visible
+                    rootMargin: "0px 0px -50px 0px" // Trigger slightly before element fully enters viewport bottom
+                };
+
+                const observer = new IntersectionObserver(observerCallback, observerOptions);
+                animatedElements.forEach((el) => observer.observe(el));
+
+            } else if (animatedElements.length > 0) {
+                // Fallback for browsers without IntersectionObserver: Show elements immediately
+                console.warn("IntersectionObserver not supported, showing all animated elements immediately.");
+                animatedElements.forEach((el) => addClass(el, 'animated opacity-100')); // Make them visible
+            }
+
+            // --- Define Custom Element Styles (Applied via JS or can be in <style>) ---
+            // These could also be utility classes in Tailwind config if preferred
+
+            // Navigation Link Styling
+            document.querySelectorAll('.nav-link').forEach(el => {
+                 addClass(el, 'text-neutral-700 hover:text-primary font-medium transition-colors duration-200 relative py-1');
+                 // Add underline effect structure (can be done with Tailwind pseudo-elements too)
+                 el.innerHTML += '<span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>';
+                 el.classList.add('group'); // Add group for hover effect
+                 // Active state styling (handled by scroll listener now)
+            });
+             document.querySelectorAll('.mobile-nav-link').forEach(el => {
+                 addClass(el, 'block text-neutral-300 hover:text-white hover:bg-neutral-800 rounded px-3 py-2 transition-all duration-200');
+                 // Active state styling (handled by scroll listener now)
+             });
+
+
+            // General Button Styling
+            document.querySelectorAll('.btn').forEach(el => {
+                addClass(el, 'inline-block px-6 py-3 rounded-md font-semibold text-center transition-all duration-300 ease-in-out shadow-soft hover:shadow-lifted transform hover:-translate-y-1');
+                if (el.classList.contains('btn-primary')) {
+                    addClass(el, 'bg-primary hover:bg-primary-dark text-white');
+                } else if (el.classList.contains('btn-accent')) {
+                     addClass(el, 'bg-accent hover:bg-accent-dark text-white');
+                } else if (el.classList.contains('btn-secondary')) {
+                     addClass(el, 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary');
+                } else if (el.classList.contains('btn-primary-outline')) {
+                     addClass(el, 'bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white');
+                }
+            });
+
+            // Feature Item Styling
+            document.querySelectorAll('.feature-item').forEach(el => {
+                 addClass(el, 'bg-white p-6 rounded-lg shadow-soft text-center transition-all duration-300 ease-in-out hover:shadow-lifted hover:scale-[1.03]');
+                 el.querySelector('.icon').classList.add('w-16', 'h-16', 'rounded-full', 'inline-flex', 'items-center', 'justify-center', 'text-3xl', 'mb-4', 'transition-transform', 'duration-300');
+                 el.addEventListener('mouseenter', () => el.querySelector('.icon').classList.add('scale-110'));
+                 el.addEventListener('mouseleave', () => el.querySelector('.icon').classList.remove('scale-110'));
+            });
+
+            // Process Step Styling
+            document.querySelectorAll('.step .step-number').forEach(el => {
+                 addClass(el, 'w-14', 'h-14', 'rounded-full', 'text-white', 'font-bold', 'text-xl', 'inline-flex', 'items-center', 'justify-center', 'mb-3', 'shadow-md', 'transition-transform', 'duration-300');
+            });
+             document.querySelectorAll('.step').forEach(el => {
+                 el.addEventListener('mouseenter', () => el.querySelector('.step-number').classList.add('scale-110'));
+                 el.addEventListener('mouseleave', () => el.querySelector('.step-number').classList.remove('scale-110'));
+             });
+
+
+            // Service Item Styling
+            document.querySelectorAll('.service-item').forEach(el => {
+                 addClass(el, 'bg-white p-6 rounded-lg shadow-soft flex items-start gap-4 transition-all duration-300 ease-in-out hover:shadow-lifted border-l-4 border-transparent hover:border-accent');
+                 el.querySelector('.icon').classList.add('text-3xl', 'mt-1', 'transition-transform', 'duration-300', 'w-8', 'text-center'); // Ensure icon width
+                 el.addEventListener('mouseenter', () => el.querySelector('.icon').classList.add('scale-110', 'rotate-[-5deg]'));
+                 el.addEventListener('mouseleave', () => el.querySelector('.icon').classList.remove('scale-110', 'rotate-[-5deg]'));
+            });
+
+            // Form Select Styling
+            document.querySelectorAll('.form-select').forEach(el => {
+                addClass(el, 'w-full px-4 py-2 border border-neutral-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 bg-white');
+            });
+
+            // Testimonial Item Styling
+            document.querySelectorAll('.testimonial-item').forEach(el => {
+                 addClass(el, 'bg-white p-8 rounded-lg shadow-soft relative overflow-hidden border-t-4 border-primary transition-all duration-300 ease-in-out hover:shadow-lifted hover:scale-[1.02]');
+                 el.querySelector('blockquote').classList.add('text-neutral-600 italic mb-4 text-lg');
+                 el.querySelector('.testimonial-author').classList.add('font-semibold text-neutral-800');
+                 el.querySelector('.testimonial-author span').classList.add('block', 'text-sm', 'text-neutral-500', 'font-normal', 'mt-1');
+            });
+
+             // Contact Info Icon Styling
+            document.querySelectorAll('.icon-contact').forEach(el => {
+                 addClass(el, 'w-6 text-center mr-3 text-xl');
+            });
+
+            // Footer Link Styling
+            document.querySelectorAll('.footer-link').forEach(el => {
+                addClass(el, 'text-neutral-400 hover:text-white hover:pl-1 transition-all duration-200 inline-block');
+            });
+
+
+        }); // End DOMContentLoaded
     </script>
 
 </body>
