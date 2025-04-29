@@ -98,7 +98,6 @@
     </script>
 
     <style>
-        /* Base font size and line height */
         body {
             font-family: theme('fontFamily.sans');
             color: theme('colors.neutral.600');
@@ -107,104 +106,45 @@
             -moz-osx-font-smoothing: grayscale;
             padding-top: 48px; /* Height of top bar */
         }
-
-        /* Headings font */
         h1, h2, h3, h4, h5, h6 {
             font-family: theme('fontFamily.heading');
             color: theme('colors.neutral.800');
-            font-weight: 600; /* Default heading weight */
+            font-weight: 600;
         }
-
-        /* Hero Background - Keep your image */
         #hero {
             background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 33, 66, 0.9)), url('Ubc .webp') no-repeat center center/cover;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
         }
-        @media (max-width: 1024px) {
-             #hero { background-attachment: scroll; } /* Disable fixed on tablets/mobile for performance */
-        }
-
-        /* Custom Scrollbar */
+        @media (max-width: 1024px) { #hero { background-attachment: scroll; } }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: theme('colors.neutral.200'); }
         ::-webkit-scrollbar-thumb { background: theme('colors.primary.DEFAULT'); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: theme('colors.primary.dark'); }
-
-        /* Section Title Underline */
         .section-title h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
+            content: ''; display: block; width: 60px; height: 3px;
             background: linear-gradient(90deg, theme('colors.primary.DEFAULT') 0%, theme('colors.accent.DEFAULT') 100%);
-            margin: 12px auto 0;
-            border-radius: 2px;
+            margin: 12px auto 0; border-radius: 2px;
         }
-
-        /* Mobile Nav Transition */
-        #main-nav {
-            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        #main-nav.mobile-open {
-            transform: translateX(0);
-        }
-
-        /* Scroll Animation Base */
-        .animate-on-scroll {
-            opacity: 0;
-            will-change: opacity, transform; /* Optimize for animation */
-        }
-        .animated {
-            opacity: 1;
-            transform: none; /* Reset transform when animated */
-        }
-
-        /* Price Estimator Result Animation */
-        #estimate-result span {
-            display: inline-block; /* Needed for transform */
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        #estimate-result.visible span {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-         /* Testimonial Quote Style */
+        #main-nav { transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); }
+        #main-nav.mobile-open { transform: translateX(0); }
+        .animate-on-scroll { opacity: 0; will-change: opacity, transform; }
+        .animated { opacity: 1; transform: none; }
+        #estimate-result span { display: inline-block; transition: transform 0.3s ease-out, opacity 0.3s ease-out; opacity: 0; transform: translateY(10px); }
+        #estimate-result.visible span { opacity: 1; transform: translateY(0); }
         .testimonial-item::before {
-            content: '“';
-            font-size: 6rem; /* Larger quote */
-            color: theme('colors.primary.DEFAULT');
-            opacity: 0.06; /* More subtle */
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            line-height: 1;
-            z-index: 0; /* Behind content */
+            content: '“'; font-size: 6rem; color: theme('colors.primary.DEFAULT'); opacity: 0.06;
+            position: absolute; top: 10px; left: 15px; line-height: 1; z-index: 0;
         }
-        .testimonial-item blockquote {
-            position: relative; /* Ensure text is above pseudo-element */
-            z-index: 1;
-        }
-
-        /* Process Steps Connection (Optional visual enhancement) */
-        @media (min-width: 768px) { /* Only on larger screens */
+        .testimonial-item blockquote { position: relative; z-index: 1; }
+        @media (min-width: 768px) {
             .process-steps { position: relative; }
             .process-steps::before {
-                content: '';
-                position: absolute;
-                top: 27.5px; /* Align with center of number circle */
-                left: 5%;
-                right: 5%;
-                height: 2px;
+                content: ''; position: absolute; top: 27.5px; left: 5%; right: 5%; height: 2px;
                 background: linear-gradient(to right, theme('colors.primary.light'), theme('colors.accent.light'));
                 z-index: 0;
             }
-            .step { position: relative; z-index: 1; } /* Ensure steps are above the line */
+            .step { position: relative; z-index: 1; }
         }
-
-
     </style>
 </head>
 <body class="bg-white overflow-x-hidden">
@@ -283,7 +223,7 @@
                     <a href="#services" class="btn btn-secondary">Se Vores Services</a>
                 </div>
             </div>
-            </section>
+        </section>
 
         <section id="why-us" class="py-16 md:py-24 bg-secondary">
             <div class="container mx-auto px-4">
@@ -570,13 +510,11 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- Helper Function for Tailwind Classes ---
-            // (Not strictly necessary with CDN but good practice for complex interactions)
+            // Helper functions for class manipulation
             const addClass = (el, className) => el.classList.add(...className.split(' '));
             const removeClass = (el, className) => el.classList.remove(...className.split(' '));
-            const toggleClass = (el, className) => el.classList.toggle(className); // Simplified for single class toggle
 
-            // --- Scroll-to-Top Button ---
+            // Scroll-to-Top Button
             const scrollTopButton = document.getElementById("scrollTopBtn");
             if (scrollTopButton) {
                 const scrollFunction = () => {
@@ -589,217 +527,160 @@
                     }
                 };
                 window.addEventListener('scroll', scrollFunction);
-                scrollTopButton.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
+                scrollTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             }
 
-            // --- Price Estimator ---
+            // Price Estimator
             const calculateBtn = document.getElementById('calculate-estimate-btn');
             const resultDiv = document.getElementById('estimate-result');
             const packageSizeSelect = document.getElementById('package-size');
             const distanceSelect = document.getElementById('distance');
-
             if (calculateBtn && resultDiv && packageSizeSelect && distanceSelect) {
                 calculateBtn.addEventListener('click', function() {
-                    const size = packageSizeSelect.value;
-                    const distance = distanceSelect.value;
-                    let basePrice = 75; // Adjusted base price
-                    let sizeMultiplier = 1;
-                    let distanceMultiplier = 1;
-
-                    // Size multipliers
-                    if (size === 'medium') { sizeMultiplier = 1.8; }
-                    else if (size === 'large') { sizeMultiplier = 3.5; }
-
-                    // Distance multipliers (Adjust based on actual pricing logic)
-                    if (distance === 'regional') { distanceMultiplier = 2.2; }
-                    else if (distance === 'national') { distanceMultiplier = 4.5; }
-
+                    const size = packageSizeSelect.value; const distance = distanceSelect.value;
+                    let basePrice = 75; let sizeMultiplier = 1; let distanceMultiplier = 1;
+                    if (size === 'medium') { sizeMultiplier = 1.8; } else if (size === 'large') { sizeMultiplier = 3.5; }
+                    if (distance === 'regional') { distanceMultiplier = 2.2; } else if (distance === 'national') { distanceMultiplier = 4.5; }
                     let estimatedPrice = basePrice * sizeMultiplier * distanceMultiplier;
-
-                    // Display result with animation
-                    resultDiv.classList.remove('visible'); // Hide previous result first
+                    resultDiv.classList.remove('visible');
                     setTimeout(() => {
                          resultDiv.innerHTML = `Estimeret Pris: <span class="text-primary font-bold text-2xl">${estimatedPrice.toFixed(0)} kr.</span>`;
-                         addClass(resultDiv, 'visible'); // Make visible with animation
-                    }, 150); // Short delay for effect
+                         addClass(resultDiv, 'visible');
+                    }, 150);
                 });
             }
 
-            // --- Mobile Navigation ---
+            // Mobile Navigation
             const nav = document.getElementById('main-nav');
             const toggleBtn = document.getElementById('mobile-nav-toggle');
             const closeBtn = document.getElementById('mobile-nav-close');
             const menuIconOpen = document.getElementById('menu-icon-open');
             const menuIconClose = document.getElementById('menu-icon-close');
             const overlay = document.getElementById('mobile-nav-overlay');
-            const navLinks = nav.querySelectorAll('a'); // Get all links inside mobile nav
-
+            const navLinks = nav.querySelectorAll('a');
             const openMobileNav = () => {
-                addClass(nav, 'mobile-open'); // Uses transform in CSS
-                removeClass(nav, 'translate-x-full');
+                addClass(nav, 'mobile-open'); removeClass(nav, 'translate-x-full');
                 toggleBtn.setAttribute('aria-expanded', 'true');
-                menuIconOpen.style.display = 'none';
-                menuIconClose.style.display = 'inline';
-                removeClass(overlay, 'hidden');
-                addClass(overlay, 'opacity-100');
-                // Prevent body scroll when menu is open
+                menuIconOpen.style.display = 'none'; menuIconClose.style.display = 'inline';
+                removeClass(overlay, 'hidden'); addClass(overlay, 'opacity-100');
                 document.body.style.overflow = 'hidden';
             };
-
             const closeMobileNav = () => {
-                removeClass(nav, 'mobile-open');
-                addClass(nav, 'translate-x-full');
+                removeClass(nav, 'mobile-open'); addClass(nav, 'translate-x-full');
                 toggleBtn.setAttribute('aria-expanded', 'false');
-                menuIconOpen.style.display = 'inline';
-                menuIconClose.style.display = 'none';
-                removeClass(overlay, 'opacity-100');
-                addClass(overlay, 'hidden');
-                 // Restore body scroll
+                menuIconOpen.style.display = 'inline'; menuIconClose.style.display = 'none';
+                removeClass(overlay, 'opacity-100'); addClass(overlay, 'hidden');
                 document.body.style.overflow = '';
             };
-
             if (nav && toggleBtn && closeBtn && menuIconOpen && menuIconClose && overlay) {
                 toggleBtn.addEventListener('click', openMobileNav);
                 closeBtn.addEventListener('click', closeMobileNav);
-                overlay.addEventListener('click', closeMobileNav); // Close on overlay click
-
-                // Close menu when a link is clicked
-                navLinks.forEach(link => {
-                    link.addEventListener('click', closeMobileNav);
-                });
+                overlay.addEventListener('click', closeMobileNav);
+                navLinks.forEach(link => link.addEventListener('click', closeMobileNav));
             }
 
-            // --- Active Navigation Link Highlighting ---
-            const sections = document.querySelectorAll('section[id]'); // Get all sections with an ID
+            // Active Navigation Link Highlighting
+            const sections = document.querySelectorAll('section[id]');
             const desktopNavLinks = document.querySelectorAll('.main-header nav a');
-            const mobileNavLinks = document.querySelectorAll('#main-nav a');
-
+            const mobileNavLinksList = document.querySelectorAll('#main-nav a'); // Renamed to avoid conflict
             const updateActiveLink = () => {
                 let currentSectionId = '';
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    // Adjust offset based on header height + a little buffer
-                    const offset = 150;
+                    const sectionTop = section.offsetTop; const sectionHeight = section.clientHeight; const offset = 150;
                     if (pageYOffset >= sectionTop - offset && pageYOffset < sectionTop + sectionHeight - offset) {
                         currentSectionId = section.getAttribute('id');
                     }
                 });
-
-                 // Update both desktop and mobile links
-                [...desktopNavLinks, ...mobileNavLinks].forEach(link => {
-                    link.classList.remove('active', 'text-primary', 'font-semibold', 'bg-primary-light'); // Remove active styles
-                     link.classList.add('text-neutral-700', 'hover:text-primary'); // Reset non-active styles for desktop
-                     if (link.closest('#main-nav')) { // Mobile specific reset
-                         link.classList.add('text-neutral-300', 'hover:text-white', 'hover:bg-neutral-700');
-                     }
-
+                [...desktopNavLinks, ...mobileNavLinksList].forEach(link => { // Use renamed variable
+                    link.classList.remove('active', 'text-primary', 'font-semibold', 'bg-primary-light', 'text-white', 'bg-primary-dark'); // Combined removals
+                    if (link.closest('.main-header')) { // Desktop reset
+                         addClass(link, 'text-neutral-700 hover:text-primary');
+                    } else { // Mobile reset
+                         addClass(link, 'text-neutral-300 hover:text-white hover:bg-neutral-700');
+                    }
                     if (link.getAttribute('href') === `#${currentSectionId}`) {
                         link.classList.add('active');
-                        // Apply specific active styles
-                        if (link.closest('.main-header')) { // Desktop
-                             link.classList.add('text-primary', 'font-semibold');
-                             link.classList.remove('text-neutral-700');
-                        } else { // Mobile
-                             link.classList.add('text-white', 'bg-primary-dark');
-                             link.classList.remove('text-neutral-300', 'hover:text-white', 'hover:bg-neutral-700');
+                        if (link.closest('.main-header')) { // Desktop active
+                             addClass(link, 'text-primary font-semibold');
+                             removeClass(link, 'text-neutral-700');
+                        } else { // Mobile active
+                             addClass(link, 'text-white bg-primary-dark');
+                             removeClass(link, 'text-neutral-300 hover:text-white hover:bg-neutral-700');
                         }
                     }
                 });
             };
-
             window.addEventListener('scroll', updateActiveLink);
-            updateActiveLink(); // Initial check on load
+            updateActiveLink(); // Initial check
 
-
-            // --- Scroll Animation Triggering ---
+            // Scroll Animation Triggering
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
             if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
                 const observerCallback = (entries, observer) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            // Get animation name from style or default to fadeIn
                             const animationName = entry.target.style.animationName || 'fadeIn';
-                            // Apply the animation class from Tailwind config
                             addClass(entry.target, `animate-${animationName}`);
-                            // Add 'animated' class to ensure final state is visible
                             addClass(entry.target, 'animated');
-                            observer.unobserve(entry.target); // Animate only once
+                            observer.unobserve(entry.target);
                         }
                     });
                 };
-
-                const observerOptions = {
-                    threshold: 0.15, // Trigger when 15% of the element is visible
-                    rootMargin: "0px 0px -50px 0px" // Trigger slightly before element fully enters viewport bottom
-                };
-
+                const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
                 const observer = new IntersectionObserver(observerCallback, observerOptions);
                 animatedElements.forEach((el) => observer.observe(el));
-
             } else if (animatedElements.length > 0) {
-                // Fallback for browsers without IntersectionObserver: Show elements immediately
                 console.warn("IntersectionObserver not supported, showing all animated elements immediately.");
-                animatedElements.forEach((el) => addClass(el, 'animated opacity-100')); // Make them visible
+                animatedElements.forEach((el) => addClass(el, 'animated opacity-100'));
             }
 
-            // --- Define Custom Element Styles (Applied via JS or can be in <style>) ---
-            // These could also be utility classes in Tailwind config if preferred
+            // --- Dynamic Element Styling Application ---
 
-            // Navigation Link Styling
+            // Navigation Link Base Styling
             document.querySelectorAll('.nav-link').forEach(el => {
-                 addClass(el, 'text-neutral-700 hover:text-primary font-medium transition-colors duration-200 relative py-1');
-                 // Add underline effect structure (can be done with Tailwind pseudo-elements too)
-                 el.innerHTML += '<span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>';
-                 el.classList.add('group'); // Add group for hover effect
-                 // Active state styling (handled by scroll listener now)
+                 addClass(el, 'text-neutral-700 hover:text-primary font-medium transition-colors duration-200 relative py-1 group'); // Added group class
+                 // Check if span already exists to prevent duplicates on potential re-runs
+                 if (!el.querySelector('.underline-span')) {
+                    el.innerHTML += '<span class="underline-span absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>';
+                 }
             });
              document.querySelectorAll('.mobile-nav-link').forEach(el => {
                  addClass(el, 'block text-neutral-300 hover:text-white hover:bg-neutral-800 rounded px-3 py-2 transition-all duration-200');
-                 // Active state styling (handled by scroll listener now)
              });
-
 
             // General Button Styling
             document.querySelectorAll('.btn').forEach(el => {
                 addClass(el, 'inline-block px-6 py-3 rounded-md font-semibold text-center transition-all duration-300 ease-in-out shadow-soft hover:shadow-lifted transform hover:-translate-y-1');
-                if (el.classList.contains('btn-primary')) {
-                    addClass(el, 'bg-primary hover:bg-primary-dark text-white');
-                } else if (el.classList.contains('btn-accent')) {
-                     addClass(el, 'bg-accent hover:bg-accent-dark text-white');
-                } else if (el.classList.contains('btn-secondary')) {
-                     addClass(el, 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary');
-                } else if (el.classList.contains('btn-primary-outline')) {
-                     addClass(el, 'bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white');
-                }
+                if (el.classList.contains('btn-primary')) addClass(el, 'bg-primary hover:bg-primary-dark text-white');
+                else if (el.classList.contains('btn-accent')) addClass(el, 'bg-accent hover:bg-accent-dark text-white');
+                else if (el.classList.contains('btn-secondary')) addClass(el, 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary');
+                else if (el.classList.contains('btn-primary-outline')) addClass(el, 'bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white');
             });
 
             // Feature Item Styling
             document.querySelectorAll('.feature-item').forEach(el => {
                  addClass(el, 'bg-white p-6 rounded-lg shadow-soft text-center transition-all duration-300 ease-in-out hover:shadow-lifted hover:scale-[1.03]');
-                 el.querySelector('.icon').classList.add('w-16', 'h-16', 'rounded-full', 'inline-flex', 'items-center', 'justify-center', 'text-3xl', 'mb-4', 'transition-transform', 'duration-300');
-                 el.addEventListener('mouseenter', () => el.querySelector('.icon').classList.add('scale-110'));
-                 el.addEventListener('mouseleave', () => el.querySelector('.icon').classList.remove('scale-110'));
+                 el.querySelector('.icon')?.classList.add('w-16', 'h-16', 'rounded-full', 'inline-flex', 'items-center', 'justify-center', 'text-3xl', 'mb-4', 'transition-transform', 'duration-300');
+                 el.addEventListener('mouseenter', () => el.querySelector('.icon')?.classList.add('scale-110'));
+                 el.addEventListener('mouseleave', () => el.querySelector('.icon')?.classList.remove('scale-110'));
             });
 
             // Process Step Styling
             document.querySelectorAll('.step .step-number').forEach(el => {
-                 addClass(el, 'w-14', 'h-14', 'rounded-full', 'text-white', 'font-bold', 'text-xl', 'inline-flex', 'items-center', 'justify-center', 'mb-3', 'shadow-md', 'transition-transform', 'duration-300');
+                 // **** VIGTIGT: 'rounded-full' sikrer den runde form ****
+                 addClass(el, 'w-14 h-14 rounded-full text-white font-bold text-xl inline-flex items-center justify-center mb-3 shadow-md transition-transform duration-300');
             });
              document.querySelectorAll('.step').forEach(el => {
-                 el.addEventListener('mouseenter', () => el.querySelector('.step-number').classList.add('scale-110'));
-                 el.addEventListener('mouseleave', () => el.querySelector('.step-number').classList.remove('scale-110'));
+                 el.addEventListener('mouseenter', () => el.querySelector('.step-number')?.classList.add('scale-110'));
+                 el.addEventListener('mouseleave', () => el.querySelector('.step-number')?.classList.remove('scale-110'));
              });
-
 
             // Service Item Styling
             document.querySelectorAll('.service-item').forEach(el => {
                  addClass(el, 'bg-white p-6 rounded-lg shadow-soft flex items-start gap-4 transition-all duration-300 ease-in-out hover:shadow-lifted border-l-4 border-transparent hover:border-accent');
-                 el.querySelector('.icon').classList.add('text-3xl', 'mt-1', 'transition-transform', 'duration-300', 'w-8', 'text-center'); // Ensure icon width
-                 el.addEventListener('mouseenter', () => el.querySelector('.icon').classList.add('scale-110', 'rotate-[-5deg]'));
-                 el.addEventListener('mouseleave', () => el.querySelector('.icon').classList.remove('scale-110', 'rotate-[-5deg]'));
+                 el.querySelector('.icon')?.classList.add('text-3xl', 'mt-1', 'transition-transform', 'duration-300', 'w-8', 'text-center');
+                 el.addEventListener('mouseenter', () => el.querySelector('.icon')?.classList.add('scale-110', 'rotate-[-5deg]'));
+                 el.addEventListener('mouseleave', () => el.querySelector('.icon')?.classList.remove('scale-110', 'rotate-[-5deg]'));
             });
 
             // Form Select Styling
@@ -810,12 +691,12 @@
             // Testimonial Item Styling
             document.querySelectorAll('.testimonial-item').forEach(el => {
                  addClass(el, 'bg-white p-8 rounded-lg shadow-soft relative overflow-hidden border-t-4 border-primary transition-all duration-300 ease-in-out hover:shadow-lifted hover:scale-[1.02]');
-                 el.querySelector('blockquote').classList.add('text-neutral-600 italic mb-4 text-lg');
-                 el.querySelector('.testimonial-author').classList.add('font-semibold text-neutral-800');
-                 el.querySelector('.testimonial-author span').classList.add('block', 'text-sm', 'text-neutral-500', 'font-normal', 'mt-1');
+                 el.querySelector('blockquote')?.classList.add('text-neutral-600', 'italic', 'mb-4', 'text-lg');
+                 el.querySelector('.testimonial-author')?.classList.add('font-semibold', 'text-neutral-800');
+                 el.querySelector('.testimonial-author span')?.classList.add('block', 'text-sm', 'text-neutral-500', 'font-normal', 'mt-1');
             });
 
-             // Contact Info Icon Styling
+            // Contact Info Icon Styling
             document.querySelectorAll('.icon-contact').forEach(el => {
                  addClass(el, 'w-6 text-center mr-3 text-xl');
             });
@@ -824,7 +705,6 @@
             document.querySelectorAll('.footer-link').forEach(el => {
                 addClass(el, 'text-neutral-400 hover:text-white hover:pl-1 transition-all duration-200 inline-block');
             });
-
 
         }); // End DOMContentLoaded
     </script>
