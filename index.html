@@ -9,17 +9,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* --- CSS Styling (Opdateret: Fjernet gradient på #hero h1) --- */
+        /* --- CSS Styling (Opdateret: Fjernet gradient på #hero h1 & Justeret Animation) --- */
         :root {
-            --primary-color: #0056b3; --secondary-color: #f8f9fa; --dark-color: #212529;
-            --light-color: #ffffff; --text-color: #495057; --accent-color: #ff6b6b;
-            --heading-font: 'Poppins', sans-serif; --body-font: 'Roboto', sans-serif;
-            --base-font-size: 16px; --line-height: 1.7;
+            --primary-color: #0056b3;
+            --secondary-color: #f8f9fa;
+            --dark-color: #212529;
+            --light-color: #ffffff;
+            --text-color: #495057;
+            --accent-color: #ff6b6b;
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Roboto', sans-serif;
+            --base-font-size: 16px;
+            --line-height: 1.7;
             --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
             --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
             --border-radius: 8px;
             --transition-speed: 0.3s;
             --transition-speed-fast: 0.2s;
+            --smooth-transition: 0.9s cubic-bezier(0.25, 0.1, 0.25, 1); /* Tilføjet for smoother animation */
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; font-size: var(--base-font-size); }
@@ -60,7 +67,6 @@
         #hero h1 {
              font-family: var(--heading-font); font-size: clamp(2.8rem, 7vw, 4.5rem);
              font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-             /* Fjernet gradient - bruger nu nedarvet --light-color */
              color: var(--light-color); /* Sikrer hvid farve */
          }
         #hero p { font-size: clamp(1.1rem, 2.5vw, 1.4rem); margin-bottom: 2.5rem; max-width: 750px; margin-left: auto; margin-right: auto; font-weight: 400; }
@@ -168,12 +174,19 @@
         #scrollTopBtn { display: none; position: fixed; bottom: 25px; right: 35px; z-index: 999; border: none; outline: none; background-color: var(--primary-color); color: white; cursor: pointer; padding: 12px 17px; border-radius: 50%; font-size: 1.3rem; transition: all var(--transition-speed) ease; opacity: 0.7; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         #scrollTopBtn:hover { background-color: #004494; opacity: 1; transform: scale(1.1); }
 
-        /* --- Scroll Animation Styling --- */
-        .animate-on-scroll { opacity: 0; transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
-        .fade-in-up { transform: translateY(50px); }
-        .slide-in-left { transform: translateX(-60px) rotate(-3deg); }
-        .slide-in-right { transform: translateX(60px) rotate(3deg); }
-        .animated { opacity: 1; transform: none; }
+        /* --- Scroll Animation Styling (Opdateret) --- */
+        .animate-on-scroll {
+            opacity: 0;
+            /* Brug den definerede smooth transition variabel */
+            transition: opacity var(--smooth-transition), transform var(--smooth-transition);
+        }
+        .fade-in-up { transform: translateY(60px); /* Lidt større start offset for tydeligere effekt */ }
+        .slide-in-left { transform: translateX(-70px) rotate(-4deg); /* Lidt større start offset */ }
+        .slide-in-right { transform: translateX(70px) rotate(4deg); /* Lidt større start offset */ }
+        .animated {
+            opacity: 1;
+            transform: none; /* Nulstil transform når animeret */
+        }
 
         /* --- Responsivitet & Mobil Menu Styling --- */
         @media (max-width: 992px) {
@@ -237,7 +250,7 @@
     <main>
         <section id="hero">
              <div class="container">
-                <h1 class="animate-on-scroll fade-in-up">Effektiv & Pålidelig Transport - Leveret af UBC</h1>
+                 <h1 class="animate-on-scroll fade-in-up">Effektiv & Pålidelig Transport - Leveret af UBC</h1>
                 <p class="animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">Hurtig, sikker og professionel levering af dine varer i hele Danmark. Din forsendelse er i trygge hænder hos UBC Transport.</p>
                 <div class="animate-on-scroll fade-in-up" style="transition-delay: 0.4s;">
                     <a href="#contact" class="btn btn-primary">Få et Tilbud Nu</a>
@@ -387,6 +400,7 @@
                 if (!isOpen) { menuIconOpen.style.display = 'none'; menuIconClose.style.display = 'inline'; }
                 else { menuIconOpen.style.display = 'inline'; menuIconClose.style.display = 'none'; }
             });
+            // Luk menuen når et link klikkes
             nav.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     if (nav.classList.contains('mobile-open')) {
@@ -402,25 +416,38 @@
         // Scroll Animationer
         const animatedElements = document.querySelectorAll('.animate-on-scroll');
         if (animatedElements.length > 0 && 'IntersectionObserver' in window) { // Tjek for IntersectionObserver support
-            const observer = new IntersectionObserver((entries) => {
+            const observerCallback = (entries, observer) => {
                 entries.forEach((entry) => {
                     // Check if element is intersecting
                     if (entry.isIntersecting) {
-                         // Add delay if specified in style attribute
-                         const delay = parseInt(entry.target.style.transitionDelay) || 0;
+                        // Read delay from style attribute (e.g., "0.2s")
+                        let delay = 0;
+                        const delayString = entry.target.style.transitionDelay;
+                        if (delayString) {
+                             // Convert "0.2s" to 200 (milliseconds)
+                             delay = parseFloat(delayString) * 1000;
+                        }
+
+                         // Add 'animated' class after the specified delay
                          setTimeout(() => {
                             entry.target.classList.add('animated');
-                         }, delay * 1000); // Convert delay (e.g., 0.15s) to milliseconds
+                         }, delay);
 
                         observer.unobserve(entry.target); // Animer kun én gang
                     }
                 });
-            }, {
-                threshold: 0.1 // Lidt lavere threshold for tidligere trigger
-            });
+            };
+
+            const observerOptions = {
+                threshold: 0.1 // Trigger når 10% af elementet er synligt
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
             animatedElements.forEach((el) => observer.observe(el));
+
         } else if (animatedElements.length > 0) {
-            // Fallback for ældre browsere: Vis elementerne med det samme
+            // Fallback for ældre browsere uden IntersectionObserver: Vis elementerne med det samme
+            console.warn("IntersectionObserver not supported, showing all animated elements immediately.");
             animatedElements.forEach((el) => el.classList.add('animated'));
         }
     </script>
